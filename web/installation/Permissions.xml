@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+ 
+    <SPRight displayName="LogItPluginRight" name="LogItPluginRight">
+        <Description>Access to use the Log It Plugin</Description>
+    </SPRight>
+
+    <SPRight displayName="LogItPluginIconRight" name="LogItPluginIconRight">
+        <Description>Access to see (load) the Log It Plugin header inject snippet</Description>
+    </SPRight>
+
+    <Capability displayName="LogItPluginCapability" name="LogItPluginCapability">
+        <Description>Allow access to Log It Plugin</Description>
+        <RightRefs>
+            <Reference class="sailpoint.object.SPRight" name="LogItPluginRight"/>
+            <Reference class="sailpoint.object.SPRight" name="LogItPluginIconRight"/>
+        </RightRefs>
+    </Capability>
+
+</sailpoint>
+

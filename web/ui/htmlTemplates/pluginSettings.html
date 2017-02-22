@@ -1,0 +1,50 @@
+<div ng-controller="CustomSettingsCtrl">
+    <h4>Plugin Options</h4>
+    <h4> </h4>
+        
+    <h5>Please suggest any appropriate configuration for upcoming releases.</h5>
+
+    <div>
+        <div>
+            <span>
+            	<br/>
+		        Credits: <br/>
+		        <br/>
+		        log4jAdmin.jsp: <br/>
+		        Mike Amend<br />
+		        BEA Systems<br />
+		        <br />  
+            </span>
+        </div>
+        <div>
+             <span>
+                Currently icon only displays on Debug page.  Is the following something desired?<br/>
+                <br/>
+                Enter a regex string for url for pages you want Log It icon to display on:
+                <div>
+                    <input type="text" ng-model="settings.Url" ng-value="settings.Url"/>
+                </div>
+ 
+            </span>
+        
+        </div>
+        <div>
+            <span>
+	            <br />
+	            Plugin created by Carol Odiorne. <br/> 
+                   <input type="text" ng-model="settings.Email" ng-value="settings.Email"/>
+	            Based loosely on the HelloWorld plugin.
+	            <br />
+            </span>
+        </div>
+    </div>
+    <div>
+        Please email Carol Odiorne <input type="text" ng-model="settings.Email" ng-value="settings.Email"/>
+         to suggest
+        enhancements to this product.
+        <br/>
+    </div>
+    <div>
+        
+    </div>
+</div>

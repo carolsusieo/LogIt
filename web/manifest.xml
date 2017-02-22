@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+    <ImportAction name="merge">
+        <Configuration name="PluginFrameworkConfig">
+            <Attributes>
+                <Map>
+                    <entry key="Plugins">
+                        <value>
+                            <Map>
+                                <entry key="Log4jAdmin">
+                                    <value>
+                                        <Plugin uniqueName="Log4jAdmin" displayName="Log4j It" enabled="true"
+                                                version="0.0.1" allowDisable="true" visible="true" allowUninstall="true"
+                                                minFrameworkVersion="0.4.8" maxFrameworkVersion="1.0.0"
+                                                minUpgradableVersion="0.1.3" certificationLevel="In-Work"
+                                                pluginAccessRight="LogItPluginRight">
+
+                                            <PluginConfiguration
+                                                    settingsPageTemplateURL="ui/htmlTemplates/pluginSettings.html">
+                                                <Snippets>
+                                                    <Snippet pagesMatchRegExPattern=".*" isMobile="false"
+                                                             isDesktop="true" rightRequired="LogItPluginIconRight" >
+                                                        <ScriptIncludes>
+                                                            <String>{plugin_root}/ui/js/headerInject.js</String>
+                                                        </ScriptIncludes>
+                                                    </Snippet>
+                                                    <Snippet pagesMatchRegExPattern=".*\/home\.?(jsf|xhtml)" isMobile="false"
+                                                             isDesktop="true" rightRequired="LogItPluginIconRight" >
+                                                        <ScriptIncludes>
+                                                            <String>{plugin_root}/ui/js/Log4jAdminWidgetModule.js</String>
+                                                        </ScriptIncludes>
+                                                    </Snippet>
+                                                    <Snippet pagesMatchRegExPattern=".*pluginPage\.jsf\?pn=PluginInstallerPlugin.*" isMobile="true"
+                                                             isDesktop="true" rightRequired="LogItPluginRight" >
+                                                        <ScriptIncludes>
+                                                            <String>{plugin_root}/ui/js/CustomSettingsCtrl.js</String>
+                                                        </ScriptIncludes>
+                                                    </Snippet>
+                                                </Snippets>
+                                            </PluginConfiguration>
+                                            <ConfigurableSettings>
+                                                <Map>
+                                                   <entry key="Url" value=".*"/>
+                                                   <entry key="Email" value="carol@carolodiorne.com"/>
+                                                 </Map>
+                                            </ConfigurableSettings>
+                                        </Plugin>
+                                    </value>
+                                </entry>
+                            </Map>
+                        </value>
+                    </entry>
+                </Map>
+            </Attributes>
+        </Configuration>
+    </ImportAction>
+</sailpoint>
