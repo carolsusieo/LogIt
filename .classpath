@@ -7,5 +7,9 @@
 	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/pluginframework.jar"/>
 	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/gson-2.3.1.jar"/>
 	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/javax.ws.rs-api-2.0-m02.jar"/>
+	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/jackson-all-1.9.0.jar"/>
+	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/org.json.jar"/>
+	<classpathentry kind="lib" path="/home/owner/lokana/mtb/iiqjar/javax.servlet-3.0.0.v201112011016.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

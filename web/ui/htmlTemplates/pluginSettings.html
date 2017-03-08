@@ -10,9 +10,9 @@
             	<br/>
 		        Credits: <br/>
 		        <br/>
-		        log4jAdmin.jsp: <br/>
-		        Mike Amend<br />
-		        BEA Systems<br />
+		        functionality derived from log4jAdmin.jsp: <br/>
+		        Mike Amend, BEA Systems<br />
+		        FooTable Open Source<br />
 		        <br />  
             </span>
         </div>
@@ -24,16 +24,20 @@
                 <div>
                     <input type="text" ng-model="settings.Url" ng-value="settings.Url"/>
                 </div>
+            </span>
+            <span>
+                Enter number of logging items to display on a page.
+                <div>
+                	<input type='text' ng-model="settings.Text" ng-value="settings.LogNum"/>
+                </div>
  
             </span>
-        
         </div>
         <div>
             <span>
 	            <br />
 	            Plugin created by Carol Odiorne. <br/> 
                    <input type="text" ng-model="settings.Email" ng-value="settings.Email"/>
-	            Based loosely on the HelloWorld plugin.
 	            <br />
             </span>
         </div>

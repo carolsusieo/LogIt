@@ -10,29 +10,11 @@ PluginFramework.CurrentPluginUniqueName = '#{pluginFramework.uniqueName}';
 PluginFramework.CsrfToken = Ext.util.Cookies.get('CSRF-TOKEN');
 
 
-
-jQuery(document).ready(function(){
-	var reg = |.*|; 
-	var test = "debug";
-	/*if(document.location.href.indexOf("debug") > -1){
-	/*if(reg.test(document.location.href.val())){
-	jQuery("ul.navbar-right li:first")
-		.before(
-				'<li class="dropdown">' +
-				'		<a href="' + logItUrl + '" tabindex="0" role="menuitem" >' +
-				'			<i role="presenation" class="fa fa-file-text-o fa-lg custom"></i>' +
-				'		</a>' +
-				'</li>'
-		);
-	}
-	
-});
-
  */
 
 
-
-var logItUrl = SailPoint.CONTEXT_PATH + '/' + PluginFramework.PluginFolderName + '/Log4jAdmin/ui/js/log4jAdmin.jsp';
+// this just sets up the icon so it will start the restful call or launch the webpage at a later time 
+var logItUrl = SailPoint.CONTEXT_PATH + '/pluginPage.jsf?pn=Log4jAdmin';
 
 jQuery(document).ready(function(valuein){
     /* can't figure how to get plugin setting values here so I could change the regex and allow icon to show on different pages...*/	

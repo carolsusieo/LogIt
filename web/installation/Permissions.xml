@@ -1,7 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
 <sailpoint>
- 
+    <SPRight displayName="LogItPluginRestServiceAllow" name="LogItPluginRestServiceAllow">
+        <Description>Allow access to Log It Plugin REST Service</Description>
+    </SPRight>
+
+    <Capability displayName="LogItPluginRestServiceAccess" name="LogItPluginRestServiceAccess">
+        <Description>Allow access to Log It Plugin REST Service</Description>
+        <RightRefs>
+            <Reference class="sailpoint.object.SPRight" name="LogItPluginRestServiceAllow"/>
+        </RightRefs>
+    </Capability> 
     <SPRight displayName="LogItPluginRight" name="LogItPluginRight">
         <Description>Access to use the Log It Plugin</Description>
     </SPRight>

@@ -18,6 +18,9 @@
 
                                             <PluginConfiguration
                                                     settingsPageTemplateURL="ui/htmlTemplates/pluginSettings.html">
+                                                                             settingsPageTemplateURL="ui/htmlTemplates/pluginSettings.html">
+                                                <FullPage desktopIncludePath="{plugin_root}/ui/test.xhtml"
+                                                          mobileIncludePath="{plugin_root}/ui/test.xhtml"/>
                                                 <Snippets>
                                                     <Snippet pagesMatchRegExPattern=".*" isMobile="false"
                                                              isDesktop="true" rightRequired="LogItPluginIconRight" >
@@ -43,6 +46,7 @@
                                                 <Map>
                                                    <entry key="Url" value=".*"/>
                                                    <entry key="Email" value="carol@carolodiorne.com"/>
+                                                   <entry key="LoginNum" value="10"/>
                                                  </Map>
                                             </ConfigurableSettings>
                                         </Plugin>
