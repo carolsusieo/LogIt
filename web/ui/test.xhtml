@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC
+        "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:sp="http://sailpoint.com/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+<head>
+  <TITLE>Log4J Administration</TITLE>
+ 
+</head>
+<body >
+
+
+<ui:composition>
+
+    <sp:style
+            serveOffset="#{base.requestContextPath}/#{pluginFramework.pluginFolderName}/#{pluginFramework.uniqueName}/ui/css">
+        <src>ng-modalDialog.css?#{debug.revision}</src>
+    </sp:style>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<!-- FooTable Bootstrap CSS  this allows the pagination limit to work, but it alters the 
+	Sailpoint header to be a lighter color for some reason -->
+	<link href="footable/compiled/footable.bootstrap.css" rel="stylesheet"></link>
+
+	<!-- Add in any FooTable dependencies we may need -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+
+	<script src="footable/compiled/footable.js"></script>
+   
+    <h1 align="center">Log4J Administration</h1>
+    <div>
+	<style>
+	.levelBtn { 
+		font-size: 12px; 
+		background-color: white; 
+		color: black; 
+		padding-left: 5px; 
+		padding-right: 5px; 
+		text-align: center; 
+		border: 1px solid #ccc; 
+		width: 50px; 
+		white-space: nowrap;
+	}
+	
+	.button {
+	    background-color: #white;
+	    border: none;
+	    color: black;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	}
+	</style>    
+      <div class="filterForm">
+        <form action="pluginPage.jsf?pn=log4jAdmin" name="logFilterForm">Filter Loggers:&nbsp;&nbsp;
+ 	      <input type="text" id="logNameFilter2" size="50" value=""/>
+          <input name="logNameFilterType" type="button" value="Begins With" class="button"  onmousedown='filterFunction("Begins+With");'/>&nbsp;
+          <input name="logNameFilterType" type="button" value="Contains" class="button" onmousedown='filterFunction("Contains");'/>&nbsp;          
+          <input name="logNameClear" type="button" value="Clear" class="button" onmousedown='javascript:document.logFilterForm.logNameFilter2.value="";' />                    
+          <input name="logNameReset" type="reset" value="Reset" class="button" onmousedown='filterFunction("");' />                              
+       
+
+          <param name="operation" value="changeLogLevel" />
+        </form>
+      </div>
+       
+  
+	  <table id="no-header-example-2" class="table" > 
+	  </table>
+		<!--  <p id="tester"></p>
+		<p id = "tester2"></p>
+		<input name="tester3" type = "button" value="GoDB" onmousedown='dbFunction("");' />
+       -->
+	  <script>
+	  var typeFilter = "";
+	  
+	  
+	  function getIt(name){
+		  if(name == null)
+			 name = "";
+
+	    $.ajax({
+	        method: "GET",
+	        beforeSend: function (request) {
+	            request.setRequestHeader("X-XSRF-TOKEN", PluginFramework.CsrfToken);
+	        },
+	        // send info along for use in future
+	        url: "#{base.requestContextPath}/plugin/log4jadminstuff/getLogStuff" + name,
+	        dataType: "text",
+	        // i've set up paging... but it still outputs all of it.
+	        success: function(data) {
+	    		ft2.loadRows(JSON.parse(data));
+	        },
+	        error: function(data){
+	
+	        }	
+	    });
+
+	  }
+      function tableInit()
+      {
+			// init the plugin and hold a reference to the instance
+			
+	  	  ft2 = FooTable.init('#no-header-example-2', {
+	  			"showHeader": true,
+	  			"paging": {
+	 				"limit": 5,
+	 				"enabled" : true,
+	 				"countFormat": "{CP} of {TP}"
+	 			},
+	  			"columns": [
+	  				{ "name": "logger", "title": "ID" },
+	  				{ "name": "parent", "title": "Parent" },
+	  				{ "name": "level0", "title": ""},
+	  				{ "name": "level1","title": ""},
+	  				{ "name": "level2","title": ""},
+	  				{ "name": "level3","title": ""},
+	  				{ "name": "level4","title": ""}
+	  			]
+	  		});   	  
+    	  
+      }
+  	//<![CDATA[
+	  function levelFunction(name)
+	  {
+		  var logNameFilter2 = document.getElementById('logNameFilter2');
+		  var log2 = "";
+		  var name2 = name;
+		  if(logNameFilter2 != null)
+			  log2 = logNameFilter2.value;
+		  if(log2 != ""){
+			  var send = "";
+			  if(name2.search("logNameFilter") < 0){
+			  	send = "&logNameFilter=" + log2 + "&logNameFilterType=" + typeFilter;
+		  	  	name2 = name + send;
+			  }
+			  else if(name2.search("logNameFilterType") < 0)
+				  name2 = name + "&logNameFilterType=" + typeFilter;
+		  	  tableInit();
+		  }
+		  getIt(name2);
+
+	  }
+	  //]]>	
+	  	//<![CDATA[
+	  function filterFunction(valuein){
+		  typeFilter = valuein;
+		  var logNameFilter2 = document.getElementById('logNameFilter2');
+		 
+		  var log2 = ""
+		  if(logNameFilter2 != null)
+			  log2 = logNameFilter2.value;
+		  tableInit();
+	
+		  if(valuein != ""){
+			  var send = "?logNameFilter=" + log2 + "&logNameFilterType=" + valuein;
+		  	  getIt(send);
+		  }
+		  else{
+			  getIt("");
+		  }
+	  }
+	  //]]>	
+	  	//<![CDATA[
+      function dbFunction(name){
+    	    $.ajax({
+	  	        method: "GET",
+	  	        beforeSend: function (request) {
+	  	            request.setRequestHeader("X-XSRF-TOKEN", PluginFramework.CsrfToken);
+	  	        },
+	  	        // send info along for use in future
+	  	        url: "#{base.requestContextPath}/plugin/log4jadminstuff/getDB",
+	  	        dataType: "text",
+	  	        // i've set up paging... but it still outputs all of it.
+	  	        success: function(data) {
+	  	    		document.getElementById('tester').innerHTML = 'success';
+	  	        },
+	  	        error: function(data){
+	  				document.getElementById('tester').innerHTML = 'error';
+	  	        }	
+	  	     });
+        }
+	  //]]>	
+
+	    $(document).ready(function () {
+	
+	    	
+	    	var log3 = document.logFilterForm.logNameFilter2.value;
+	    	if(log3 == "" || log3 == null)
+	    	{
+	    		tableInit();
+				getIt("");  
+	    	}
+		});
+		</script>
+		</div>
+</ui:composition>
+
+</body>
+
+</html>
